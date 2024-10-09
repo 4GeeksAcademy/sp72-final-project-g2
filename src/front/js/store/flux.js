@@ -69,7 +69,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                 setStore({ alert: newAlert });
             },
 
-            // Generate an exercise routine
             generateRoutine: async (routineData) => {
                 setStore({ loading: true, generatedRoutine: null, routineId: null, error: null });
                 const url = `${process.env.BACKEND_URL}/api/generate-exercise-routine`;
@@ -87,13 +86,22 @@ const getState = ({ getStore, getActions, setStore }) => {
                     setStore({ generatedRoutine: data.generated_routine, routineId: data.routine_id, error: null, loading: false });
                 } catch (error) {
                     setStore({ error: error.message, loading: false });
+                    
+                    setTimeout(() => {
+                        setStore({ error: null });
+                    }, 5000);
                 }
             },
-
-            // Generate a recipe
+            
             generateRecipe: async (ingredientNames) => {
                 if (!ingredientNames.trim()) {
                     setStore({ error: 'Tienes que agregar al menos un ingrediente', loading: false });
+            
+                    // Clear error after 5 seconds
+                    setTimeout(() => {
+                        setStore({ error: null });
+                    }, 5000);
+            
                     return;
                 }
                 setStore({ loading: true, generatedRecipe: null, recipeId: null, error: null });
@@ -111,6 +119,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                     setStore({ generatedRecipe: data.generated_recipe, recipeId: data.recipe_id, error: null, loading: false }); 
                 } catch (error) {
                     setStore({ error: error.message, loading: false });
+            
+                    setTimeout(() => {
+                        setStore({ error: null });
+                    }, 5000);
                 }
             },
 

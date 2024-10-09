@@ -57,8 +57,6 @@ export const Profile = () => {
             alert("Error al actualizar el perfil.");
         }
     };
-
-
     return (
         !store.currentUser ?
             navigate("/login")
@@ -98,7 +96,7 @@ export const Profile = () => {
                                             <span>Edad: {store.currentUser.age} años</span>
                                         </li>
                                     </ul>
-                                    <Button className="btn btn-primary mt-4" onClick={() => setShow(true)}>
+                                    <Button className="btn btn-warning mt-4" onClick={() => setShow(true)}>
                                         Actualizar perfil
                                     </Button>
                                 </div>
@@ -186,7 +184,7 @@ export const Profile = () => {
                         <Button variant="secondary" onClick={() => setShow(false)}>
                             Cancelar
                         </Button>
-                        <Button variant="primary" onClick={handleSave}>
+                        <Button variant="warning" onClick={handleSave}>
                             Guardar
                         </Button>
                     </Modal.Footer>
@@ -200,7 +198,7 @@ export const Profile = () => {
                         <p>Obten un plan nutricional haciendo clic en el siguiente botón.</p>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary" as={Link} to="/nutrition-plan">
+                        <Button variant="warning" as={Link} to="/nutrition-plan">
                             Ir al plan nutricional
                         </Button>
                     </Modal.Footer>
@@ -208,7 +206,6 @@ export const Profile = () => {
             </div>
     );
 };
-
 
 
 

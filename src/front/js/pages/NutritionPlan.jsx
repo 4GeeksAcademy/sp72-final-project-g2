@@ -29,7 +29,7 @@ export const NutritionPlan = () => {
 
 
     const calculateBMR = (e) => {
-        e.preventDefault();  
+        e.preventDefault();
         const { sex, age, height, weight } = store.currentUser;
         if (!age || !height || !weight) {
             alert("Por favor, ingresa todos los datos necesarios en el perfil.");
@@ -52,21 +52,21 @@ export const NutritionPlan = () => {
             "Highly active": (calculatedBMR * 1.725).toFixed(0),
             "Super athletic": (calculatedBMR * 1.9).toFixed(0)
         };
-    
+
 
         setFormData({ ...formData, bmr: calorieNeeds.BMR, calories: calorieNeeds });
 
-        
+
         setTimeout(() => {
-            const position = infoSectionRef.current.getBoundingClientRect().top + window.scrollY - 50; 
+            const position = infoSectionRef.current.getBoundingClientRect().top + window.scrollY - 50;
             window.scrollTo({
                 top: position,
                 behavior: 'smooth'
             });
         }, 300);
     };
-    
 
+    
     const handleActivitySelection = (calories) => {
         const totalCalories = parseInt(calories);
         const protein = (totalCalories * 0.3 / 4).toFixed(2);
@@ -81,8 +81,6 @@ export const NutritionPlan = () => {
         });
         macronutrientSectionRef.current.scrollIntoView({ behavior: 'smooth' });
     };
-
-
     return (
         !store.currentUser ?
             navigate("/login")
@@ -100,7 +98,7 @@ export const NutritionPlan = () => {
                     </nav>
                     <h1 className="h1-profile">Plan Nutricional</h1>
                     <p>Calcula tu Tasa Metabólica Basal y elige la cantidad de actividad que vas a realizar para obtener el porcentaje de macronutrientes recomendados</p>
-                    <form onSubmit={calculateBMR}> 
+                    <form onSubmit={calculateBMR}>
                         <div className="mt-3">
                             <label className="form-label">Objetivo:</label>
                             <select
@@ -113,7 +111,7 @@ export const NutritionPlan = () => {
                                 <option value="muscle_gain">Ganancia muscular</option>
                             </select>
                         </div>
-                        <Button ref={infoSectionRef} type="submit" className="text-white btn btn-outline-primary btn-sm mx-1 mt-3">
+                        <Button ref={infoSectionRef} type="submit" className="text-white btn btn-outline-warning btn-sm mx-1 mt-3">
                             Calcular
                         </Button>
                     </form>
@@ -167,7 +165,7 @@ export const NutritionPlan = () => {
                                             <li className="d-flex justify-content-between">
                                                 <b style={{ width: "33%", textAlign: "left" }} className="m-auto">Atlético:</b>
                                                 <b style={{ width: "33%", textAlign: "center" }} className="m-auto">{formData.calories["Super athletic"]} kcal</b>
-                                                <a  ref={macronutrientSectionRef} style={{ width: "33%", textAlign: "center" }} className="ml-2 choose-activity m-auto"
+                                                <a ref={macronutrientSectionRef} style={{ width: "33%", textAlign: "center" }} className="ml-2 choose-activity m-auto"
                                                     onClick={() => handleActivitySelection(formData.calories["Super athletic"])}> Elegir
                                                 </a>
                                             </li>
@@ -205,7 +203,7 @@ export const NutritionPlan = () => {
                                 <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                     <div className="cards-dashboard">
                                         <p className="p-profile-info">Obten un plan de ejercicios personalizados con nuestra TrAIner</p>
-                                        <Link to="/generate-routines" className="btn btn-primary mt-2 text-white text-decoration-none">
+                                        <Link to="/generate-routines" className="btn btn-warning mt-2 text-white text-decoration-none">
                                             Crear
                                         </Link>
                                     </div>
